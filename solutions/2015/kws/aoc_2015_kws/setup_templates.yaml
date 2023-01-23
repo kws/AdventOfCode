@@ -1,0 +1,26 @@
+
+day_file: |
+    import click
+    from aocd import submit
+
+    from .cli import main
+    from .config import config
+
+
+    @main.command()
+    @click.option("--sample", "-s", is_flag=True)
+    def day{day}(sample):
+
+
+    if sample:
+        input_data = (config.SAMPLE_DIR / "day{day}.txt").read_text()
+    else:
+        input_data = (config.USER_DIR / "day{day}.txt").read_text()
+
+    # submit(my_answer, part="a", day={day}, year=config.AOC_EVENT)
+
+test_file: |
+    from {package}.day_{day} import *
+
+    def test_day{day}():
+        assert True
